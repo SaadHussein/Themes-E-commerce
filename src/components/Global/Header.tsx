@@ -51,7 +51,7 @@ const Header = () => {
 						navigate("/");
 					}}
 				>
-					Themes E-commerce
+					DevStore
 				</p>
 				<div className="max-[800px]:hidden">
 					<Input type="text" placeholder="Search" className="rounded-2xl" />
