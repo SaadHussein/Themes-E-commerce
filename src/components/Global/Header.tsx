@@ -58,7 +58,7 @@ const Header = () => {
 				</div>
 			</div>
 			<div className="flex items-center justify-end gap-4">
-				{name === "" && (
+				{name === "" && width >= 600 && (
 					<>
 						<p
 							onClick={() => {
@@ -91,7 +91,7 @@ const Header = () => {
 						</p>
 					</>
 				)}
-				{name !== "" && width < 600 && (
+				{width < 600 && (
 					<>
 						<DropdownMenu>
 							<DropdownMenuTrigger asChild>
@@ -105,12 +105,36 @@ const Header = () => {
 							<DropdownMenuContent className="w-56">
 								<DropdownMenuLabel>Menu Items</DropdownMenuLabel>
 								<DropdownMenuSeparator />
-								<DropdownMenuRadioItem value={name}>
-									{name}
-								</DropdownMenuRadioItem>
-								<DropdownMenuRadioItem value="" onClick={UserLogout}>
-									Logout
-								</DropdownMenuRadioItem>
+								{name !== "" && (
+									<>
+										<DropdownMenuRadioItem value={name}>
+											{name}
+										</DropdownMenuRadioItem>
+										<DropdownMenuRadioItem value="" onClick={UserLogout}>
+											Logout
+										</DropdownMenuRadioItem>
+									</>
+								)}
+								{name === "" && (
+									<>
+										<DropdownMenuRadioItem
+											value={""}
+											onClick={() => {
+												navigate("/login");
+											}}
+										>
+											Login
+										</DropdownMenuRadioItem>
+										<DropdownMenuRadioItem
+											value=""
+											onClick={() => {
+												navigate("/register");
+											}}
+										>
+											Register
+										</DropdownMenuRadioItem>
+									</>
+								)}
 							</DropdownMenuContent>
 						</DropdownMenu>
 					</>
