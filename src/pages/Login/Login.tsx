@@ -5,6 +5,7 @@ import { z } from "zod";
 import {
 	Form,
 	FormControl,
+	FormDescription,
 	FormField,
 	FormItem,
 	FormLabel,
@@ -73,7 +74,7 @@ const Login = () => {
 				<Form {...form}>
 					<form
 						onSubmit={form.handleSubmit(onSubmit)}
-						className="space-y-8 w-[35%] max-[1100px]:w-[60%] max-[650px]:w-[90%] max-[380px]:w-[95%] p-5 max-[430px]:p-2 border-solid border-[1px]"
+						className="bg-white space-y-8 w-[35%] max-[1100px]:w-[60%] max-[650px]:w-[90%] max-[380px]:w-[95%] p-5 max-[430px]:p-2 border-solid border-[3px] rounded-lg"
 					>
 						<FormField
 							control={form.control}
@@ -84,6 +85,7 @@ const Login = () => {
 									<FormControl>
 										<Input
 											placeholder="Write Your Email Please..."
+											className="border-[3px]"
 											{...field}
 										/>
 									</FormControl>
@@ -102,10 +104,13 @@ const Login = () => {
 										<Input
 											placeholder="Write Your Password Please..."
 											type="password"
+											className="border-[3px]"
 											{...field}
 										/>
 									</FormControl>
-
+									<FormDescription className="duration-300 text-[#ea4023] hover:text-[#ff7860] cursor-pointer">
+										Forget Password ?
+									</FormDescription>
 									<FormMessage />
 								</FormItem>
 							)}
@@ -118,6 +123,9 @@ const Login = () => {
 						>
 							Submit
 						</Button>
+						<p className="duration-300 text-[#ea4023] hover:text-[#ff6448] cursor-pointer w-full flex items-center justify-center">
+							Create a New Account ?
+						</p>
 					</form>
 				</Form>
 			</div>

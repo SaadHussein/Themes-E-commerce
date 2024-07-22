@@ -1,26 +1,26 @@
-import { FreeProduct, State } from "@/utils/types";
+import { Product, State } from "@/utils/types";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ProductItem from "./ProductItem";
-import { setFreeProductsInRedux } from "@/app/Global";
+import { setAllProductsInRedux } from "@/app/Global";
 
-const FreeProducts = () => {
+const PremiumProducts = () => {
 	const token = useSelector((state: State) => state.Global.token);
 	const dispatch = useDispatch();
 	const [loading, setLoading] = useState<boolean>(true);
-	const [freeProducts, setFreeProducts] = useState<FreeProduct[]>([]);
-	const FreeProductsFromRedux = useSelector(
-		(state: State) => state.Global.freeProducts
+	const [premiumProducts, setPremiumProducts] = useState<Product[]>([]);
+	const allProductsFromRedux = useSelector(
+		(state: State) => state.Global.allProducts
 	);
 
 	useEffect(() => {
-		const getFreeProducts = async () => {
-			if (FreeProductsFromRedux.length !== 0) {
-				setFreeProducts([...FreeProductsFromRedux]);
+		const getPremiumProducts = async () => {
+			if (allProductsFromRedux.length !== 0) {
+				setPremiumProducts([...allProductsFromRedux]);
 				setLoading(false);
 			} else {
-				const freeProducts = await fetch(
-					"http://mohamedahmed124-001-site1.ltempurl.com/api/categories/13/products",
+				const premiumProducts = await fetch(
+					"http://mohamedahmed124-001-site1.ltempurl.com/api/products",
 					{
 						method: "GET",
 						headers: {
@@ -29,16 +29,15 @@ const FreeProducts = () => {
 					}
 				);
 
-				const result = await freeProducts.json();
-				setFreeProducts([...result.data]);
-				dispatch(setFreeProductsInRedux({ value: result.data }));
+				const result = await premiumProducts.json();
+				setPremiumProducts([...result.data]);
+				dispatch(setAllProductsInRedux({ value: result.data }));
 				setLoading(false);
 				console.log(result);
 			}
 		};
-
-		getFreeProducts();
-	}, [token, FreeProductsFromRedux, dispatch]);
+		getPremiumProducts();
+	}, [token, allProductsFromRedux]);
 	return (
 		<>
 			{token === "" ? (
@@ -55,7 +54,7 @@ const FreeProducts = () => {
 				</div>
 			) : (
 				<div className="grid grid-cols-3 gap-8 max-[1250px]:grid-cols-2 max-[850px]:grid-cols-1 pt-8">
-					{freeProducts.map((product: FreeProduct) => (
+					{premiumProducts.map((product: Product) => (
 						<ProductItem
 							price={product.price}
 							name={product.name}
@@ -72,4 +71,4 @@ const FreeProducts = () => {
 	);
 };
 
-export default FreeProducts;
+export default PremiumProducts;

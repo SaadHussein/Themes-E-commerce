@@ -14,6 +14,8 @@ export type InitialStateType = {
 	name: string;
 	id: number;
 	email: string;
+	allProducts: Product[];
+	freeProducts: FreeProduct[];
 };
 
 export type State = {
@@ -22,10 +24,21 @@ export type State = {
 		name: string;
 		id: number;
 		email: string;
+		allProducts: Product[];
+		freeProducts: FreeProduct[];
 	};
 };
 
 export type FreeProduct = {
+	id: number;
+	name: string;
+	price: string;
+	description: string;
+	category_id: number;
+	images: string[];
+};
+
+export type Product = {
 	id: number;
 	name: string;
 	price: string;

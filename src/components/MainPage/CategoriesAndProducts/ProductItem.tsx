@@ -3,7 +3,10 @@ import { FreeProduct } from "@/utils/types";
 
 const ProductItem = ({ name, price, images }: FreeProduct) => {
 	return (
-		<div data-aos="fade-up" className=" rounded-lg border-solid border-[1px]">
+		<div
+			data-aos="fade-up"
+			className="bg-white rounded-lg border-solid border-[3px]"
+		>
 			<div
 				className={`h-[250px] ${
 					images.length === 0 ? "flex items-center justify-center" : ""

@@ -93,7 +93,7 @@ const Register = () => {
 				<Form {...form}>
 					<form
 						onSubmit={form.handleSubmit(onSubmit)}
-						className="space-y-8 w-[35%] max-[1100px]:w-[60%] max-[650px]:w-[90%] max-[380px]:w-[95%] p-5 max-[430px]:p-2 border-solid border-[1px]"
+						className="bg-white space-y-8 w-[35%] max-[1100px]:w-[60%] max-[650px]:w-[90%] max-[380px]:w-[95%] p-5 max-[430px]:p-2 border-solid border-[3px] rounded-lg"
 					>
 						<FormField
 							control={form.control}
@@ -172,6 +172,9 @@ const Register = () => {
 						>
 							Submit
 						</Button>
+						<p className="duration-300 text-[#ea4023] hover:text-[#ff6448] cursor-pointer w-full flex items-center justify-center">
+							Already Have Account ?
+						</p>
 					</form>
 				</Form>
 			</div>

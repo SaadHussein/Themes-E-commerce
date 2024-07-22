@@ -14,7 +14,14 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Button } from "../ui/button";
 import { LogoutUser } from "@/utils/api/logout";
-import { setName, setEmail, setId, setToken } from "@/app/Global";
+import {
+	setName,
+	setEmail,
+	setId,
+	setToken,
+	setAllProductsInRedux,
+	setFreeProductsInRedux,
+} from "@/app/Global";
 import { useToast } from "@/components/ui/use-toast";
 import DevStore from "../../assets/DevStoreLogo.svg";
 
@@ -35,6 +42,8 @@ const Header = () => {
 			dispatch(setEmail({ value: "" }));
 			dispatch(setId({ value: "" }));
 			dispatch(setToken({ value: "" }));
+			dispatch(setAllProductsInRedux({ value: [] }));
+			dispatch(setFreeProductsInRedux({ value: [] }));
 
 			toast({
 				title: "Note",

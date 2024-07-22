@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Categories from "./Categories";
 import FreeProducts from "./FreeProducts";
+import PremiumProducts from "./PremiumProducts";
 
 const CategoriesAndProducts = () => {
 	const [category, setCategory] = useState<string>("Free");
@@ -9,7 +10,8 @@ const CategoriesAndProducts = () => {
 			<div data-aos="fade-up" data-aos-duration="500">
 				<Categories category={category} setCategory={setCategory} />
 			</div>
-			<FreeProducts />
+			{category === "Free" && <FreeProducts />}
+			{category === "Premium" && <PremiumProducts />}
 		</div>
 	);
 };

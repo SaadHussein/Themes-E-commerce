@@ -1,4 +1,5 @@
 import { Dispatch } from "react";
+import { IoGift, IoCheckmarkCircleOutline } from "react-icons/io5";
 
 const Categories = ({
 	category,
@@ -13,21 +14,21 @@ const Categories = ({
 				onClick={() => {
 					setCategory("Free");
 				}}
-				className={`duration-300 w-[200px] max-[500px]:w-[125px] border-solid border-[1px] border-[#b0b0b0] flex items-center justify-center py-4 rounded-xl cursor-pointer hover:border-[#ea4023] hover:text-[#ea4023] font-semibold ${
+				className={`duration-300 w-[200px] max-[500px]:w-[125px] border-solid border-[3px] border-[#b0b0b0] flex items-center justify-center gap-2 py-4 rounded-xl cursor-pointer hover:border-[#ea4023] hover:text-[#ea4023] font-semibold ${
 					category === "Free" ? "border-[#ea4023] text-[#ea4023]" : ""
 				}`}
 			>
-				Free
+				<IoGift size={24} /> Free
 			</div>
 			<div
 				onClick={() => {
 					setCategory("Premium");
 				}}
-				className={`duration-300 w-[200px] max-[500px]:w-[125px] border-solid border-[1px] border-[#b0b0b0] flex items-center justify-center py-4 rounded-xl cursor-pointer hover:border-[#ea4023] hover:text-[#ea4023] font-semibold ${
+				className={`duration-300 w-[200px] max-[500px]:w-[125px] border-solid border-[3px] border-[#b0b0b0] flex items-center justify-center gap-2 py-4 rounded-xl cursor-pointer hover:border-[#ea4023] hover:text-[#ea4023] font-semibold ${
 					category === "Premium" ? "border-[#ea4023] text-[#ea4023]" : ""
 				}`}
 			>
-				Premium
+				<IoCheckmarkCircleOutline size={24} /> Premium
 			</div>
 		</div>
 	);
