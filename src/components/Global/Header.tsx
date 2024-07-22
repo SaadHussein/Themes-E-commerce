@@ -16,6 +16,7 @@ import { Button } from "../ui/button";
 import { LogoutUser } from "@/utils/api/logout";
 import { setName, setEmail, setId, setToken } from "@/app/Global";
 import { useToast } from "@/components/ui/use-toast";
+import DevStore from "../../assets/DevStoreLogo.svg";
 
 const Header = () => {
 	const { toast } = useToast();
@@ -43,16 +44,24 @@ const Header = () => {
 	};
 
 	return (
-		<div className="h-[70px] bg-blue-500 px-10 max-[600px]:px-2 flex items-center justify-between">
+		// <div className="h-[70px] bg-blue-500 px-10 max-[600px]:px-2 flex items-center justify-between">
+		<div className="h-[70px] bg-[#ea4023] px-10 max-[600px]:px-2 flex items-center justify-between">
 			<div className="flex items-center justify-start gap-4">
-				<p
-					className="text-white font-bold text-[24px] cursor-pointer"
+				{/* <div
+					className="cursor-pointer"
 					onClick={() => {
 						navigate("/");
 					}}
-				>
-					DevStore
-				</p>
+				> */}
+				<img
+					src={DevStore}
+					alt="DevStore"
+					className="cursor-pointer w-[130px]"
+					onClick={() => {
+						navigate("/");
+					}}
+				/>
+				{/* </div> */}
 				<div className="max-[800px]:hidden">
 					<Input type="text" placeholder="Search" className="rounded-2xl" />
 				</div>

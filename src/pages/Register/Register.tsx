@@ -17,8 +17,9 @@ import { RegisterUser } from "@/utils/api/register";
 import { useToast } from "@/components/ui/use-toast";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { State } from "@/utils/types";
+import { setEmail, setId, setName, setToken } from "@/app/Global";
 
 const formSchema = z
 	.object({
@@ -45,6 +46,7 @@ const formSchema = z
 	);
 
 const Register = () => {
+	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	const name = useSelector((state: State) => state.Global.name);
 
@@ -76,6 +78,14 @@ const Register = () => {
 					? result.message
 					: result.errors.email[0],
 		});
+
+		if (result.message === "user created successfully") {
+			dispatch(setToken({ value: result.token }));
+			dispatch(setId({ value: result.user.id }));
+			dispatch(setEmail({ value: result.user.email }));
+			dispatch(setName({ value: result.user.name }));
+			navigate("/");
+		}
 	}
 	return (
 		<div className="w-full h-[85vh] flex items-center justify-center">
@@ -157,7 +167,8 @@ const Register = () => {
 						/>
 						<Button
 							type="submit"
-							className="w-full bg-blue-500 hover:bg-blue-600"
+							// className="w-full bg-blue-500 hover:bg-blue-600"
+							className="w-full bg-[#ea4023] hover:bg-[#ff6448]"
 						>
 							Submit
 						</Button>

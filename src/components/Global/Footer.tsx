@@ -29,7 +29,8 @@ const Footer = () => {
 					</li>
 				</ul>
 				<div className="max-[800px]:mt-4">
-					<p className="font-semibold duration-300 cursor-pointer text-blue-500 hover:text-blue-600">
+					{/* <p className="font-semibold duration-300 cursor-pointer text-blue-500 hover:text-blue-600"> */}
+					<p className="font-semibold duration-300 cursor-pointer text-[#fd6d53] hover:text-[#ea4023]">
 						ReDownload Theme
 					</p>
 				</div>
