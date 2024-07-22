@@ -1,14 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { FreeProduct } from "@/utils/types";
 
-const ProductItem = ({
-	name,
-	id,
-	description,
-	price,
-	images,
-	category_id,
-}: FreeProduct) => {
+const ProductItem = ({ name, price, images }: FreeProduct) => {
 	return (
 		<div data-aos="fade-up" className=" rounded-lg border-solid border-[1px]">
 			<div
