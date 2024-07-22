@@ -37,7 +37,7 @@ const PremiumProducts = () => {
 			}
 		};
 		getPremiumProducts();
-	}, [token, allProductsFromRedux]);
+	}, [token, allProductsFromRedux, dispatch]);
 	return (
 		<>
 			{token === "" ? (
