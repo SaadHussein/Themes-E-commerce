@@ -45,7 +45,10 @@ const Header = () => {
 
 	return (
 		// <div className="h-[70px] bg-blue-500 px-10 max-[600px]:px-2 flex items-center justify-between">
-		<div className="h-[70px] bg-[#ea4023] px-10 max-[600px]:px-2 flex items-center justify-between">
+		<div
+			data-aos="fade-down"
+			className="h-[70px] bg-[#ea4023] px-10 max-[600px]:px-2 flex items-center justify-between"
+		>
 			<div className="flex items-center justify-start gap-4">
 				{/* <div
 					className="cursor-pointer"

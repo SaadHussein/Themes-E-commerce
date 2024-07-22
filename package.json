@@ -17,6 +17,8 @@
     "@radix-ui/react-toast": "^1.2.1",
     "@react-hook/window-size": "^3.1.1",
     "@reduxjs/toolkit": "^2.2.6",
+    "@types/aos": "^3.0.7",
+    "aos": "^2.3.4",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "lucide-react": "^0.411.0",

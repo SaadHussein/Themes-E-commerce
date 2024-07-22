@@ -3,7 +3,11 @@ import { FaXTwitter, FaInstagram } from "react-icons/fa6";
 
 const Footer = () => {
 	return (
-		<div className="flex items-center justify-center flex-col w-full">
+		<div
+			data-aos="fade-up"
+			data-aos-duration="600"
+			className="flex items-center justify-center flex-col w-full pt-10"
+		>
 			<div className="px-10 flex items-center justify-between w-full max-[800px]:flex-col">
 				<ul className="flex items-center justify-start gap-5 max-[800px]:flex-wrap max-[800px]:justify-center max-[800px]:gap-3">
 					<li className="cursor-pointer duration-300 font-semibold text-[#748194] hover:text-black">

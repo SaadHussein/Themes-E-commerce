@@ -1,15 +1,13 @@
-import { State } from "@/utils/types";
-import { useSelector } from "react-redux";
+import CategoriesAndProducts from "@/components/MainPage/CategoriesAndProducts/CategoriesAndProducts";
+import HeroSection from "@/components/MainPage/HeroSection";
+import Subscribe from "@/components/MainPage/Subscribe";
 
 const MainPage = () => {
-	const name = useSelector((state: State) => state.Global.name);
 	return (
-		<div className="h-[1000px] flex items-center justify-center flex-col">
-			<div className="text-center">
-				<p className="flex items-center justify-center font-bold text-[24px]">
-					UserName is : {name}
-				</p>
-			</div>
+		<div className="flex items-center justify-center flex-col px-20 max-[500px]:px-8">
+			<HeroSection />
+			<CategoriesAndProducts />
+			<Subscribe />
 		</div>
 	);
 };
