@@ -5,11 +5,15 @@ const CategoryItem = ({
 	image,
 	categoryItem,
 	setCategoryItem,
+	id,
+	setCategoryID,
 }: {
 	name: string;
 	image: string;
 	categoryItem: string;
 	setCategoryItem: Dispatch<string>;
+	id: number;
+	setCategoryID: Dispatch<number>;
 }) => {
 	return (
 		<div
@@ -18,6 +22,7 @@ const CategoryItem = ({
 			} rounded-3xl px-1 py-1 cursor-pointer`}
 			onClick={() => {
 				setCategoryItem(name);
+				setCategoryID(id);
 			}}
 		>
 			<img

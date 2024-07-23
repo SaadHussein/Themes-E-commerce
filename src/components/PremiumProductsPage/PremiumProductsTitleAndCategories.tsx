@@ -8,9 +8,11 @@ import star from "../../assets/star.png";
 const PremiumProductsTitleAndCategories = ({
 	setCategoryItem,
 	categoryItem,
+	setCategoryID,
 }: {
 	categoryItem: string;
 	setCategoryItem: Dispatch<string>;
+	setCategoryID: Dispatch<number>;
 }) => {
 	const token = useSelector((state: State) => state.Global.token);
 	const dispatch = useDispatch();
@@ -53,7 +55,10 @@ const PremiumProductsTitleAndCategories = ({
 					One From Them, Buy and Download It and Try and Work on It.
 				</p>
 			</div>
-			<div className="mt-10 flex items-center justify-center flex-col">
+			<div
+				data-aos="fade-down"
+				className="mt-10 flex items-center justify-center flex-col"
+			>
 				<p className="font-semibold text-[21px] mb-5">Categories</p>
 				<div className="flex items-center justify-center gap-4 flex-wrap">
 					<div
@@ -62,6 +67,7 @@ const PremiumProductsTitleAndCategories = ({
 						} rounded-3xl px-1 py-1 cursor-pointer`}
 						onClick={() => {
 							setCategoryItem("All");
+							setCategoryID(0);
 						}}
 					>
 						<img
@@ -76,6 +82,8 @@ const PremiumProductsTitleAndCategories = ({
 							key={category.id}
 							image={category.image}
 							name={category.name}
+							id={category.id}
+							setCategoryID={setCategoryID}
 							categoryItem={categoryItem}
 							setCategoryItem={setCategoryItem}
 						/>
