@@ -3,10 +3,13 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ProductItem from "./ProductItem";
 import { setAllProductsInRedux } from "@/app/Global";
+import { Button } from "@/components/ui/button";
+import { useNavigate } from "react-router-dom";
 
 const PremiumProducts = () => {
 	const token = useSelector((state: State) => state.Global.token);
 	const dispatch = useDispatch();
+	const navigate = useNavigate();
 	const [loading, setLoading] = useState<boolean>(true);
 	const [premiumProducts, setPremiumProducts] = useState<Product[]>([]);
 	const allProductsFromRedux = useSelector(
@@ -53,19 +56,31 @@ const PremiumProducts = () => {
 					</p>
 				</div>
 			) : (
-				<div className="grid grid-cols-3 gap-8 max-[1250px]:grid-cols-2 max-[850px]:grid-cols-1 pt-8">
-					{premiumProducts.map((product: Product) => (
-						<ProductItem
-							price={product.price}
-							name={product.name}
-							category_id={product.category_id}
-							description={product.description}
-							id={product.id}
-							images={product.images}
-							key={product.category_id + product.id + product.description}
-						/>
-					))}
-				</div>
+				<>
+					<div className="grid grid-cols-3 gap-8 max-[1250px]:grid-cols-2 max-[850px]:grid-cols-1 pt-8">
+						{premiumProducts.slice(0, 21).map((product: Product) => (
+							<ProductItem
+								price={product.price}
+								name={product.name}
+								category_id={product.category_id}
+								description={product.description}
+								id={product.id}
+								images={product.images}
+								key={product.category_id + product.id + product.description}
+							/>
+						))}
+					</div>
+					<div className="flex items-center justify-center w-full mt-10">
+						<Button
+							className="bg-[#ea4023] hover:bg-[#ff6c53]"
+							onClick={() => {
+								navigate("/premium-products");
+							}}
+						>
+							Show More
+						</Button>
+					</div>
+				</>
 			)}
 		</>
 	);
