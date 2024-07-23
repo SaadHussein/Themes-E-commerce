@@ -113,6 +113,14 @@ const Header = () => {
 							Free
 						</p>
 						<p
+							onClick={() => {
+								navigate("/premium-products");
+							}}
+							className="font-semibold text-white text-[18px] cursor-pointer"
+						>
+							Premium
+						</p>
+						<p
 							className="font-semibold text-white text-[18px] cursor-pointer"
 							onClick={UserLogout}
 						>
@@ -146,6 +154,14 @@ const Header = () => {
 											value={""}
 										>
 											Free
+										</DropdownMenuRadioItem>
+										<DropdownMenuRadioItem
+											onClick={() => {
+												navigate("/premium-products");
+											}}
+											value={""}
+										>
+											Premium
 										</DropdownMenuRadioItem>
 										<DropdownMenuRadioItem value="" onClick={UserLogout}>
 											Logout
