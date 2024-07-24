@@ -2,30 +2,101 @@ import { Input } from "../ui/input";
 import { useSelector } from "react-redux";
 import { Product, State } from "@/utils/types";
 import ProductItem from "../MainPage/CategoriesAndProducts/ProductItem";
+import { Button } from "../ui/button";
+import { Dispatch } from "react";
 
 const ProductsPremium = ({
 	search,
 	loading,
 	premiumProducts,
 	handleProductSearch,
+	searchByDescription,
+	handleSearchProductsByDescription,
+	setMaxPrice,
+	setMinPrice,
+	maxPrice,
+	minPrice,
+	handleSearchByPrice,
+	ResetSearch,
 }: {
 	search: string;
+	searchByDescription: string;
 	loading: boolean;
 	premiumProducts: Product[];
 	handleProductSearch: (e: React.ChangeEvent<HTMLInputElement>) => void;
+	handleSearchProductsByDescription: (
+		e: React.ChangeEvent<HTMLInputElement>
+	) => void;
+	minPrice: number;
+	maxPrice: number;
+	setMinPrice: Dispatch<number>;
+	setMaxPrice: Dispatch<number>;
+	handleSearchByPrice: () => void;
+	ResetSearch: () => void;
 }) => {
 	const token = useSelector((state: State) => state.Global.token);
 
 	return (
 		<>
-			<Input
-				type="text"
-				data-aos="fade-up"
-				placeholder="Search By Name..."
-				value={search}
-				onChange={handleProductSearch}
-				className="w-[25%] max-[1100px]:w-[50%] max-[550px]:w-[100%] border-[3px] outline-none"
-			/>
+			<div className="flex items-center justify-between w-full max-[1000px]:flex-col">
+				<div className="flex items-center justify-center gap-2 max-[650px]:flex-col">
+					<Input
+						type="text"
+						data-aos="fade-up"
+						placeholder="Search By Name..."
+						value={search}
+						onChange={handleProductSearch}
+						className="w-[300px] max-[350px]:w-[250px] border-[3px] outline-none"
+					/>
+					<Input
+						type="text"
+						data-aos="fade-up"
+						placeholder="Search By Description..."
+						value={searchByDescription}
+						onChange={handleSearchProductsByDescription}
+						className="w-[300px] max-[350px]:w-[250px] border-[3px] outline-none"
+					/>
+				</div>
+				<div className="flex items-center justify-center gap-3 flex-col mt-3">
+					<p className="font-semibold text-[18px]">Search By Price:</p>
+					<div>
+						<Input
+							type="number"
+							data-aos="fade-up"
+							placeholder="From"
+							value={minPrice}
+							onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+								setMinPrice(+e.target.value);
+							}}
+							className="w-full border-[3px] outline-none mt-2"
+						/>
+						<Input
+							type="number"
+							data-aos="fade-up"
+							placeholder="To"
+							value={maxPrice}
+							onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+								setMaxPrice(+e.target.value);
+							}}
+							className="w-full border-[3px] outline-none mt-2"
+						/>
+					</div>
+					<div className="flex items-center justify-center gap-2">
+						<Button
+							className="bg-[#ea4023] hover:bg-[#ff6b51]"
+							onClick={handleSearchByPrice}
+						>
+							Search By Price
+						</Button>
+						<Button
+							className="bg-[#ea4023] hover:bg-[#ff6b51]"
+							onClick={ResetSearch}
+						>
+							Reset All Search
+						</Button>
+					</div>
+				</div>
+			</div>
 			{token === "" ? (
 				<div className="mt-20 mb-10" data-aos="fade-up">
 					<p className="text-[24px] font-semibold text-center">

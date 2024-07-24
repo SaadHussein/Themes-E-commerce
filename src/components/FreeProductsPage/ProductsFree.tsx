@@ -8,6 +8,7 @@ import { Input } from "../ui/input";
 const ProductsFree = () => {
 	const token = useSelector((state: State) => state.Global.token);
 	const [search, setSearch] = useState<string>("");
+	const [searchByDescription, setSearchByDescription] = useState<string>("");
 	const dispatch = useDispatch();
 	const [loading, setLoading] = useState<boolean>(true);
 	const [freeProducts, setFreeProducts] = useState<FreeProduct[]>([]);
@@ -45,6 +46,7 @@ const ProductsFree = () => {
 	const handleProductSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
 		if (e.target.value === "") {
 			setFreeProducts([...FreeProductsFromRedux]);
+			setSearchByDescription("");
 		} else {
 			const searchedProducts = freeProducts.filter((product: FreeProduct) =>
 				product.name.toLowerCase().startsWith(e.target.value.toLowerCase())
@@ -52,6 +54,21 @@ const ProductsFree = () => {
 			setFreeProducts([...searchedProducts]);
 		}
 		setSearch(e.target.value);
+	};
+
+	const handleProductSearchByDescription = (
+		e: React.ChangeEvent<HTMLInputElement>
+	) => {
+		if (e.target.value === "") {
+			setFreeProducts([...FreeProductsFromRedux]);
+			setSearch("");
+		} else {
+			const searchedProducts = freeProducts.filter((product: FreeProduct) =>
+				product.description.toLowerCase().includes(e.target.value.toLowerCase())
+			);
+			setFreeProducts([...searchedProducts]);
+		}
+		setSearchByDescription(e.target.value);
 	};
 	return (
 		<>
@@ -62,6 +79,14 @@ const ProductsFree = () => {
 				value={search}
 				onChange={handleProductSearch}
 				className="w-[25%] max-[1100px]:w-[50%] max-[550px]:w-[100%] border-[3px] outline-none"
+			/>
+			<Input
+				type="text"
+				data-aos="fade-up"
+				placeholder="Search By Description..."
+				value={searchByDescription}
+				onChange={handleProductSearchByDescription}
+				className="w-[25%] max-[1100px]:w-[50%] max-[550px]:w-[100%] border-[3px] outline-none mt-2"
 			/>
 			{token === "" ? (
 				<div className="mt-20 mb-10" data-aos="fade-up">
