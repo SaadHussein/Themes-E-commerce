@@ -1,7 +1,9 @@
 import { Button } from "@/components/ui/button";
 import { FreeProduct } from "@/utils/types";
+import { useNavigate } from "react-router-dom";
 
-const ProductItem = ({ name, price, images }: FreeProduct) => {
+const ProductItem = ({ name, price, images, id }: FreeProduct) => {
+	const navigate = useNavigate();
 	return (
 		<div
 			data-aos="fade-up"
@@ -29,7 +31,12 @@ const ProductItem = ({ name, price, images }: FreeProduct) => {
 					<p className="font-semibold text-[18px]">${price}</p>
 				</div>
 				<div className="w-full flex justify-end">
-					<Button className="bg-[#ea4023] hover:bg-[#ff6b51] mt-2 max-[850px]:w-full">
+					<Button
+						onClick={() => {
+							navigate(`/products/${id}`);
+						}}
+						className="bg-[#ea4023] hover:bg-[#ff6b51] mt-2 max-[850px]:w-full"
+					>
 						Show Details
 					</Button>
 				</div>

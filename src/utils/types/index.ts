@@ -54,3 +54,29 @@ export type Category = {
 	image: string;
 	name: string;
 };
+
+export type ProductDetailsSchema = {
+	id: number;
+	name: string;
+	price: string;
+	description: string;
+	images: ProductImagechema[];
+	category: string;
+	created_at: string;
+	updated_at: string;
+	reviews: {
+		comment: string;
+		id: string;
+		created_at: string;
+		rating: number;
+		user: string;
+	}[];
+	reviews_count: number;
+	can_review: boolean;
+	download_url: string;
+};
+
+type ProductImagechema = {
+	image_name: string;
+	url: string;
+};
