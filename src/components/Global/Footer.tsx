@@ -47,7 +47,10 @@ const Footer = () => {
 					<FaInstagram className="duration-300 hover:text-black" />
 				</div>
 				<div className="font-semibold text-[#748194] duration-300 hover:text-black cursor-pointer max-[400px]:mt-4">
-					SaadHussein &copy; 2024
+					<a href="https://www.linkedin.com/in/saad-hussein-634639207/">
+						SaadHussein
+					</a>{" "}
+					&copy; 2024
 				</div>
 			</div>
 		</div>
