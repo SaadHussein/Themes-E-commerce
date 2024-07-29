@@ -17,6 +17,7 @@ export type InitialStateType = {
 	allProducts: Product[];
 	freeProducts: FreeProduct[];
 	categories: Category[];
+	userOrders: UserOrder[];
 };
 
 export type State = {
@@ -28,6 +29,7 @@ export type State = {
 		allProducts: Product[];
 		freeProducts: FreeProduct[];
 		categories: Category[];
+		userOrders: UserOrder[];
 	};
 };
 
@@ -79,4 +81,10 @@ export type ProductDetailsSchema = {
 type ProductImagechema = {
 	image_name: string;
 	url: string;
+};
+
+export type UserOrder = {
+	id: number;
+	name: string;
+	price: string;
 };

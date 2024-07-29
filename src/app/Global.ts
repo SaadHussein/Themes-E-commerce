@@ -9,6 +9,7 @@ const initialState: InitialStateType = {
 	allProducts: [],
 	freeProducts: [],
 	categories: [],
+	userOrders: [],
 };
 
 export const Global = createSlice({
@@ -36,6 +37,9 @@ export const Global = createSlice({
 		setCategoriesInRedux: (state, action) => {
 			state.categories = action.payload.value;
 		},
+		setUserOrdersInRedux: (state, action) => {
+			state.userOrders = action.payload.value;
+		},
 	},
 });
 
@@ -47,5 +51,6 @@ export const {
 	setFreeProductsInRedux,
 	setAllProductsInRedux,
 	setCategoriesInRedux,
+	setUserOrdersInRedux,
 } = Global.actions;
 export default Global.reducer;

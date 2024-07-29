@@ -2,8 +2,9 @@ import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import React, { Dispatch, useState } from "react";
 import { Label } from "../ui/label";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { State } from "@/utils/types";
+import { setUserOrdersInRedux } from "@/app/Global";
 
 const WillBuyForm = ({
 	setWillBuy,
@@ -12,6 +13,7 @@ const WillBuyForm = ({
 	setWillBuy: Dispatch<boolean>;
 	productID: number | undefined;
 }) => {
+	const dispatch = useDispatch();
 	const [cardNumber, setCardNumber] = useState<string>("");
 	const [expiryDate, setExpiryDate] = useState<string>("");
 	const [cvv, setCvv] = useState<string>("");
@@ -42,6 +44,7 @@ const WillBuyForm = ({
 		if (result.message === "Payment successful. Download your product.") {
 			setIsBuySuccess(true);
 			setDownloadURL(result.download_url);
+			dispatch(setUserOrdersInRedux({ value: [] }));
 		}
 	};
 	return (

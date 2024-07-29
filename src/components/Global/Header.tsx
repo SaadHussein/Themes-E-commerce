@@ -21,6 +21,7 @@ import {
 	setToken,
 	setAllProductsInRedux,
 	setFreeProductsInRedux,
+	setUserOrdersInRedux,
 } from "@/app/Global";
 import { useToast } from "@/components/ui/use-toast";
 import DevStore from "../../assets/DevStoreLogo.svg";
@@ -44,6 +45,7 @@ const Header = () => {
 			dispatch(setToken({ value: "" }));
 			dispatch(setAllProductsInRedux({ value: [] }));
 			dispatch(setFreeProductsInRedux({ value: [] }));
+			dispatch(setUserOrdersInRedux({ value: [] }));
 
 			toast({
 				title: "Note",
@@ -74,7 +76,7 @@ const Header = () => {
 					}}
 				/>
 				{/* </div> */}
-				<div className="max-[800px]:hidden">
+				<div className="max-[880px]:hidden">
 					<Input type="text" placeholder="Search" className="rounded-2xl" />
 				</div>
 			</div>
@@ -99,7 +101,7 @@ const Header = () => {
 						</p>
 					</>
 				)}
-				{name !== "" && width >= 600 && (
+				{name !== "" && width >= 680 && (
 					<>
 						<p className="font-semibold text-white text-[18px] cursor-pointer">
 							{name}
@@ -121,6 +123,14 @@ const Header = () => {
 							Premium
 						</p>
 						<p
+							onClick={() => {
+								navigate("/my-orders");
+							}}
+							className="font-semibold text-white text-[18px] cursor-pointer"
+						>
+							My Orders
+						</p>
+						<p
 							className="font-semibold text-white text-[18px] cursor-pointer"
 							onClick={UserLogout}
 						>
@@ -128,7 +138,7 @@ const Header = () => {
 						</p>
 					</>
 				)}
-				{width < 600 && (
+				{width < 680 && (
 					<>
 						<DropdownMenu>
 							<DropdownMenuTrigger asChild>
@@ -162,6 +172,14 @@ const Header = () => {
 											value={""}
 										>
 											Premium
+										</DropdownMenuRadioItem>
+										<DropdownMenuRadioItem
+											onClick={() => {
+												navigate("/my-orders");
+											}}
+											value={""}
+										>
+											My Orders
 										</DropdownMenuRadioItem>
 										<DropdownMenuRadioItem value="" onClick={UserLogout}>
 											Logout

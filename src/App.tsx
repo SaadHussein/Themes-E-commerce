@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setAllProductsInRedux, setFreeProductsInRedux } from "@/app/Global";
 import PremiumProductsPage from "./pages/PremiumProductsPage/PremiumProductsPage";
 import ProductDetails from "./pages/ProductDetails/ProductDetails";
+import MyOrders from "./pages/MyOrders/MyOrders";
 
 function App() {
 	const token = useSelector((state: State) => state.Global.token);
@@ -69,6 +70,7 @@ function App() {
 					<Route path="/free-products" element={<FreeProductsPage />} />
 					<Route path="/premium-products" element={<PremiumProductsPage />} />
 					<Route path="/products/:id" element={<ProductDetails />} />
+					<Route path="/my-orders" element={<MyOrders />} />
 				</Route>
 			</Routes>
 		</main>
