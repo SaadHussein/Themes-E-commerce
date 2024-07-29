@@ -172,7 +172,12 @@ const Register = () => {
 						>
 							Submit
 						</Button>
-						<p className="duration-300 text-[#ea4023] hover:text-[#ff6448] cursor-pointer w-full flex items-center justify-center">
+						<p
+							onClick={() => {
+								navigate("/login");
+							}}
+							className="duration-300 text-[#ea4023] hover:text-[#ff6448] cursor-pointer w-full flex items-center justify-center"
+						>
 							Already Have Account ?
 						</p>
 					</form>

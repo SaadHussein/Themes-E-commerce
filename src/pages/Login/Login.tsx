@@ -123,7 +123,12 @@ const Login = () => {
 						>
 							Submit
 						</Button>
-						<p className="duration-300 text-[#ea4023] hover:text-[#ff6448] cursor-pointer w-full flex items-center justify-center">
+						<p
+							onClick={() => {
+								navigate("/register");
+							}}
+							className="duration-300 text-[#ea4023] hover:text-[#ff6448] cursor-pointer w-full flex items-center justify-center"
+						>
 							Create a New Account ?
 						</p>
 					</form>

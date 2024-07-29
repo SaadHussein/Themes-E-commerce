@@ -1,6 +1,7 @@
 import { ProductDetailsSchema } from "@/utils/types";
 import { useEffect, useState } from "react";
 import { IoStar } from "react-icons/io5";
+import WillBuyForm from "./WillBuyForm";
 
 const ProductDetailsHeader = ({
 	productDetails,
@@ -8,6 +9,7 @@ const ProductDetailsHeader = ({
 	productDetails: ProductDetailsSchema | null;
 }) => {
 	const [averageRating, setAverageRatings] = useState<number>(0);
+	const [willBuy, setWillBuy] = useState<boolean>(false);
 
 	useEffect(() => {
 		if (productDetails?.reviews.length === 0) {
@@ -83,9 +85,17 @@ const ProductDetailsHeader = ({
 					</a>
 				)}
 				{productDetails?.category !== "For Free" && (
-					<div className="p-2 duration-300 bg-[#ea4023] hover:bg-[#ff694f] text-white rounded-md">
+					<div
+						onClick={() => {
+							setWillBuy(true);
+						}}
+						className="p-2 duration-300 bg-[#ea4023] hover:bg-[#ff694f] text-white rounded-md cursor-pointer"
+					>
 						Buy Theme
 					</div>
+				)}
+				{willBuy && (
+					<WillBuyForm setWillBuy={setWillBuy} productID={productDetails?.id} />
 				)}
 			</div>
 		</div>
