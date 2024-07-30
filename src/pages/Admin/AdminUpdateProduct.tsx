@@ -10,17 +10,26 @@ import { Label } from "@/components/ui/label";
 // } from "@/components/ui/select";
 import { Product, State } from "@/utils/types";
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
+import { setAllProductsInRedux, setFreeProductsInRedux } from "@/app/Global";
 
 const AdminUpdateProduct = () => {
+	const navigate = useNavigate();
+	const email = useSelector((state: State) => state.Global.email);
+	useEffect(() => {
+		if (email !== "amomo8227@gmail.com") {
+			navigate("/");
+		}
+	}, [email, navigate]);
+	const dispatch = useDispatch();
 	const params = useParams();
 	const token = useSelector((state: State) => state.Global.token);
 	const allProductsFromRedux = useSelector(
 		(state: State) => state.Global.allProducts
 	);
-	// const [product, setProduct] = useState<Product>();
+	const [product, setProduct] = useState<Product>();
 	const [name, setName] = useState<string>("");
 	const [price, setPrice] = useState<string>("");
 	// const [description, setDescription] = useState<string>("");
@@ -36,12 +45,29 @@ const AdminUpdateProduct = () => {
 		setName(selectedProduct[0].name);
 		setPrice(selectedProduct[0].price);
 		// setDescription(selectedProduct[0].description);
-		// setProduct(selectedProduct[0]);
+		setProduct(selectedProduct[0]);
 		// setCategoryID(selectedProduct[0].category_id);
 		// console.log(selectedProduct[0]);
 	}, [allProductsFromRedux, params.id]);
 
 	const handleUpdateProduct = async () => {
+		// const formData: {
+		// 	name: string;
+		// 	price: string;
+		// 	image?: File | null;
+		// 	file?: File | null;
+		// } = {
+		// 	name,
+		// 	price,
+		// };
+
+		// if (image) {
+		// 	formData.image = image;
+		// }
+		// if (file) {
+		// 	formData.file = file;
+		// }
+
 		const formData = new FormData();
 
 		formData.append("name", name);
@@ -54,19 +80,54 @@ const AdminUpdateProduct = () => {
 			formData.append("image", image);
 		}
 
+		console.log(formData);
 		try {
-			const createProductResponse = await axios.post(
-				"http://mohamedahmed124-001-site1.ltempurl.com/api/admin/add",
+			const updateProductResponse = await axios.post(
+				`http://mohamedahmed124-001-site1.ltempurl.com/api/admin/update/${product?.id}?_method=put`,
+				// JSON.stringify(formData),
 				formData,
 				{
 					headers: {
 						Authorization: `Bearer ${token}`,
+						"Content-Type": "multipart/form-data",
 						Accept: "application/json",
 					},
 				}
 			);
 
-			console.log(createProductResponse.data);
+			console.log(updateProductResponse.data);
+
+			if (
+				updateProductResponse.data.message === "Product updated successfully"
+			) {
+				const freeProducts = await fetch(
+					"http://mohamedahmed124-001-site1.ltempurl.com/api/categories/13/products",
+					{
+						method: "GET",
+						headers: {
+							Authorization: `Bearer ${token}`,
+						},
+					}
+				);
+
+				const freeProductsResult = await freeProducts.json();
+				console.log(freeProductsResult);
+				dispatch(setFreeProductsInRedux({ value: freeProductsResult.data }));
+
+				const premiumProducts = await fetch(
+					"http://mohamedahmed124-001-site1.ltempurl.com/api/products",
+					{
+						method: "GET",
+						headers: {
+							Authorization: `Bearer ${token}`,
+						},
+					}
+				);
+
+				const premiumProductsResult = await premiumProducts.json();
+				console.log(premiumProductsResult);
+				dispatch(setAllProductsInRedux({ value: premiumProductsResult.data }));
+			}
 		} catch (error) {
 			console.log(error);
 			throw new Error("Error Happened While Creating Product");

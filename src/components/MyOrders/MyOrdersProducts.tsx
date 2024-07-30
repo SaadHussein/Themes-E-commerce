@@ -31,6 +31,10 @@ const MyOrdersProducts = () => {
 
 					const result = await userOrders.json();
 					console.log(result);
+					if (result.length === 0) {
+						setLoading(false);
+						return;
+					}
 					setUserOrders([...result]);
 					dispatch(setUserOrdersInRedux({ value: result }));
 					setLoading(false);

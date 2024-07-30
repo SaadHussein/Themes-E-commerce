@@ -33,6 +33,7 @@ const Header = () => {
 	const width = useWindowWidth();
 	const name = useSelector((state: State) => state.Global.name);
 	const token = useSelector((state: State) => state.Global.token);
+	const email = useSelector((state: State) => state.Global.email);
 
 	const UserLogout = async () => {
 		const result = await LogoutUser(token);
@@ -51,6 +52,8 @@ const Header = () => {
 				title: "Note",
 				description: result.message,
 			});
+
+			navigate("/");
 		}
 	};
 
@@ -130,14 +133,16 @@ const Header = () => {
 						>
 							My Orders
 						</p>
-						<p
-							onClick={() => {
-								navigate("/admin");
-							}}
-							className="font-semibold text-white text-[18px] cursor-pointer"
-						>
-							Admin
-						</p>
+						{email === "amomo8227@gmail.com" && (
+							<p
+								onClick={() => {
+									navigate("/admin");
+								}}
+								className="font-semibold text-white text-[18px] cursor-pointer"
+							>
+								Admin
+							</p>
+						)}
 						<p
 							className="font-semibold text-white text-[18px] cursor-pointer"
 							onClick={UserLogout}
@@ -189,14 +194,16 @@ const Header = () => {
 										>
 											My Orders
 										</DropdownMenuRadioItem>
-										<DropdownMenuRadioItem
-											onClick={() => {
-												navigate("/admin");
-											}}
-											value={""}
-										>
-											Admin
-										</DropdownMenuRadioItem>
+										{email === "amomo8227@gmail.com" && (
+											<DropdownMenuRadioItem
+												onClick={() => {
+													navigate("/admin");
+												}}
+												value={""}
+											>
+												Admin
+											</DropdownMenuRadioItem>
+										)}
 										<DropdownMenuRadioItem value="" onClick={UserLogout}>
 											Logout
 										</DropdownMenuRadioItem>

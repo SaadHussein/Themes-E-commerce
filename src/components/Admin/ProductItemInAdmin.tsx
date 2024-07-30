@@ -1,24 +1,34 @@
 import { useNavigate } from "react-router-dom";
 import { Button } from "../ui/button";
-import { useSelector } from "react-redux";
-import { State } from "@/utils/types";
+import { useDispatch, useSelector } from "react-redux";
+import { FreeProduct, Product, State } from "@/utils/types";
+import { setAllProductsInRedux, setFreeProductsInRedux } from "@/app/Global";
+import { Dispatch } from "react";
 
 const ProductItemInAdmin = ({
 	images,
 	name,
 	price,
 	id,
-	category_id,
+	setSearch,
+	setSearchByDescription,
 }: {
 	images: string[];
 	name: string;
 	price: string;
 	id: number;
-	category_id: number;
+	setSearch: Dispatch<string>;
+	setSearchByDescription: Dispatch<string>;
 }) => {
 	const navigate = useNavigate();
 	const token = useSelector((state: State) => state.Global.token);
-	console.log(category_id);
+	const allProductsInRedux = useSelector(
+		(state: State) => state.Global.allProducts
+	);
+	const allFreeInRedux = useSelector(
+		(state: State) => state.Global.freeProducts
+	);
+	const dispatch = useDispatch();
 
 	const handleDeleteItem = async () => {
 		try {
@@ -35,6 +45,16 @@ const ProductItemInAdmin = ({
 
 			const result = await deleteItemResponse.json();
 			console.log(result);
+			const newAllProducts = allProductsInRedux.filter(
+				(product: Product) => product.id !== id
+			);
+			const newFreeProducts = allFreeInRedux.filter(
+				(product: FreeProduct) => product.id !== id
+			);
+			dispatch(setAllProductsInRedux({ value: [...newAllProducts] }));
+			dispatch(setFreeProductsInRedux({ value: [...newFreeProducts] }));
+			setSearch("");
+			setSearchByDescription("");
 		} catch (error) {
 			console.log(error);
 			throw new Error("Error Happened While Deleting Item");

@@ -88,10 +88,11 @@ const ProductsListInAdmin = () => {
 							<ProductItemInAdmin
 								price={product.price}
 								name={product.name}
-								category_id={product.category_id}
 								id={product.id}
 								images={product.images}
 								key={product.category_id + product.id + product.name}
+								setSearchByDescription={setSearchByDescription}
+								setSearch={setSearch}
 							/>
 						))}
 					</div>
