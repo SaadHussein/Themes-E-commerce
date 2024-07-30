@@ -13,6 +13,7 @@ import PremiumProductsPage from "./pages/PremiumProductsPage/PremiumProductsPage
 import ProductDetails from "./pages/ProductDetails/ProductDetails";
 import MyOrders from "./pages/MyOrders/MyOrders";
 import About from "./pages/About/About";
+import Admin from "./pages/Admin/Admin";
 
 function App() {
 	const token = useSelector((state: State) => state.Global.token);
@@ -73,6 +74,7 @@ function App() {
 					<Route path="/products/:id" element={<ProductDetails />} />
 					<Route path="/my-orders" element={<MyOrders />} />
 					<Route path="/about" element={<About />} />
+					<Route path="/admin" element={<Admin />} />
 				</Route>
 			</Routes>
 		</main>

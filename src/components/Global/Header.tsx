@@ -76,7 +76,7 @@ const Header = () => {
 					}}
 				/>
 				{/* </div> */}
-				<div className="max-[880px]:hidden">
+				<div className="max-[910px]:hidden">
 					<Input type="text" placeholder="Search" className="rounded-2xl" />
 				</div>
 			</div>
@@ -101,7 +101,7 @@ const Header = () => {
 						</p>
 					</>
 				)}
-				{name !== "" && width >= 680 && (
+				{name !== "" && width >= 720 && (
 					<>
 						<p className="font-semibold text-white text-[18px] cursor-pointer">
 							{name}
@@ -131,6 +131,14 @@ const Header = () => {
 							My Orders
 						</p>
 						<p
+							onClick={() => {
+								navigate("/admin");
+							}}
+							className="font-semibold text-white text-[18px] cursor-pointer"
+						>
+							Admin
+						</p>
+						<p
 							className="font-semibold text-white text-[18px] cursor-pointer"
 							onClick={UserLogout}
 						>
@@ -138,7 +146,7 @@ const Header = () => {
 						</p>
 					</>
 				)}
-				{width < 680 && (
+				{width < 720 && (
 					<>
 						<DropdownMenu>
 							<DropdownMenuTrigger asChild>
@@ -180,6 +188,14 @@ const Header = () => {
 											value={""}
 										>
 											My Orders
+										</DropdownMenuRadioItem>
+										<DropdownMenuRadioItem
+											onClick={() => {
+												navigate("/admin");
+											}}
+											value={""}
+										>
+											Admin
 										</DropdownMenuRadioItem>
 										<DropdownMenuRadioItem value="" onClick={UserLogout}>
 											Logout
