@@ -76,7 +76,9 @@ const ProductItemInAdmin = ({
 						Show Details
 					</Button>
 					<Button
-						onClick={() => {}}
+						onClick={() => {
+							navigate(`/admin/update-product/${id}`);
+						}}
 						className="bg-[#ea4023] hover:bg-[#ff6b51] p-2 mt-2 max-[850px]:w-full"
 					>
 						Update

@@ -14,6 +14,7 @@ import ProductDetails from "./pages/ProductDetails/ProductDetails";
 import MyOrders from "./pages/MyOrders/MyOrders";
 import About from "./pages/About/About";
 import Admin from "./pages/Admin/Admin";
+import AdminUpdateProduct from "./pages/Admin/AdminUpdateProduct";
 
 function App() {
 	const token = useSelector((state: State) => state.Global.token);
@@ -75,6 +76,10 @@ function App() {
 					<Route path="/my-orders" element={<MyOrders />} />
 					<Route path="/about" element={<About />} />
 					<Route path="/admin" element={<Admin />} />
+					<Route
+						path="/admin/update-product/:id"
+						element={<AdminUpdateProduct />}
+					/>
 				</Route>
 			</Routes>
 		</main>
