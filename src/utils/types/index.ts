@@ -87,4 +87,6 @@ export type UserOrder = {
 	id: number;
 	name: string;
 	price: string;
+	image: string;
+	download_link: string;
 };
